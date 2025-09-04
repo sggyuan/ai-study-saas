@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify, render_template_string
+from flask import Flask, request, jsonify, render_template
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_wtf.csrf import CSRFProtect
@@ -24,12 +24,7 @@ db = SQLAlchemy(app)
 # 如果需要启用CSRF，请取消下面的注释
 # csrf = CSRFProtect(app)
 
-# 从文件中加载前端HTML代码
-try:
-    with open('index.html', 'r', encoding='utf-8') as f:
-        FRONTEND_HTML = f.read()
-except FileNotFoundError:
-    FRONTEND_HTML = "<h1>Error: index.html not found.</h1>"
+
 
 
 
@@ -58,7 +53,7 @@ with app.app_context():
 # 添加一个根路由，用于返回前端页面
 @app.route('/', methods=['GET'])
 def index():
-    return render_template_string(FRONTEND_HTML)
+    return render_template('index.html')
 
 @app.route('/register', methods=['POST'])
 def register():
