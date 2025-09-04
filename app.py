@@ -53,7 +53,7 @@ with app.app_context():
 # 添加一个根路由，用于返回前端页面
 @app.route('/', methods=['GET'])
 def index():
-    return render_template('index.html')
+    return "<h1>Hello, World! The server is working!</h1>"
 
 @app.route('/register', methods=['POST'])
 def register():
